@@ -1,18 +1,17 @@
 export default function process(depths: number[]): number {
-  let count = 0;
-  const windows = createWindows(depths);
-  for (let index = 1; index < windows.length; index++) {
-    if (windows[index] > windows[index - 1]) {
-      count++;
-    }
-  }
-  return count;
+  const triplets = slidingWindow(depths, 3);
+  const pairs = slidingWindow(triplets.map(sum), 2);
+  return pairs.filter(([first, second]) => second > first).length;
 }
 
-function createWindows(depths: number[]): number[] {
+function sum(values: number[]): number {
+  return values.reduce((curr, next) => curr + next, 0);
+}
+
+function slidingWindow(values: number[], length: number): number[][] {
   const windows = [];
-  for (let index = 1; index < depths.length - 1; index++) {
-    windows.push(depths[index - 1] + depths[index] + depths[index + 1]);
+  for (let index = 0; index < values.length - (length - 1); index++) {
+    windows.push(values.slice(index, index + length));
   }
   return windows;
 }
