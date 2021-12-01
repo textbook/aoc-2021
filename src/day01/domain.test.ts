@@ -8,10 +8,10 @@ describe("Sonar Sweep domain", () => {
   });
 
   it("counts the number of increases", () => {
-    expect(process([123, 456, 789])).to.equal(2);
+    expect(process([12, 34, 56, 78, 90])).to.equal(2);
   });
 
   it("does not count decreases", () => {
-    expect(process([456, 123, 789])).to.equal(1);
+    expect(process([56, 78, 12, 34, 90])).to.equal(1);
   });
 });
