@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "day01": "node ./lib/day01/main.js ./src/day01/input.txt",
     "test": "mocha"
   },
   "keywords": [],
