@@ -1,13 +1,13 @@
 import { promises } from "fs";
 
-import sonarSweep from ".";
+import main from ".";
 
 const [_, __, file] = process.argv;
 
 
 promises
   .readFile(file, "utf8")
-  .then((data) => sonarSweep(data))
+  .then((data) => main(data))
   .then((result) => {
     console.log(result);
     process.exit(0);
