@@ -10,20 +10,15 @@ export interface Instruction {
 }
 
 export default function process(instructions: Instruction[]): number {
-  let aim = 0, depth = 0, position = 0;
-  instructions.forEach(({ direction, distance }) => {
+  const { depth, position } = instructions.reduce((state, { direction, distance }) => {
     switch (direction) {
       case Direction.DOWN:
-        aim += distance;
-        break;
+        return { ...state, aim: state.aim + distance};
       case Direction.FORWARD:
-        position += distance;
-        depth += aim * distance;
-        break;
+        return { ...state, depth: state.depth + (state.aim * distance), position: state.position + distance };
       case Direction.UP:
-        aim -= distance;
-        break;
+        return { ...state, aim: state.aim - distance};
     }
-  });
+  }, { aim: 0, depth: 0, position: 0 });
   return depth * position;
 }
