@@ -8,9 +8,9 @@ describe("Dive! domain", () => {
 
   it("can apply movements", () => {
     expect(process([
-      { direction: Direction.FORWARD, distance: 5 },
-      { direction: Direction.DOWN, distance: 5 },
       { direction: Direction.UP, distance: 3 },
-    ])).to.equal(10);
+      { direction: Direction.DOWN, distance: 5 },
+      { direction: Direction.FORWARD, distance: 5 },
+    ])).to.equal(50);
   });
 });
