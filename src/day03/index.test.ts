@@ -18,7 +18,7 @@ const example = `
 `.trim();
 
 describe("Binary Diagnostic", () => {
-  it("finds the product of the gamma rate and epsilon rate", () => {
-    expect(binaryDiagnostic(example)).to.equal(198);
+  it("finds the product of the oxygen generator rating and CO2 scrubber rating", () => {
+    expect(binaryDiagnostic(example)).to.equal(230);
   });
 });

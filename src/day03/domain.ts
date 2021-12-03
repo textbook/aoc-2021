@@ -1,22 +1,31 @@
 export default function process(report: string[]): number {
-  const bitLength = report[0].length;
-  const bits = [...Array(bitLength)]
-    .map((_, index) => index)
-    .map((index) => mostCommon(report.map((entry) => entry[index])));
-  const gammaRate = parseInt(bits.join(""), 2);
-  const epsilonRate = gammaRate ^ ((2 ** bitLength) - 1)
-  return gammaRate * epsilonRate;
+  const o2gen = filterByMostCommonOrOne(report);
+  const co2scrub = filterByLeastCommonOrZero(report);
+  return parseInt(o2gen, 2) * parseInt(co2scrub, 2);
 }
 
-function mostCommon(all: string[]): string {
-  let ones = 0;
-  for (let index = 0; index < all.length; index++) {
-    if (all[index] === "1") {
-      ones++;
-    }
-    if (ones > (all.length / 2)) {
-      return "1";
-    }
+function filterByMostCommonOrOne(report: string[], index: number = 0): string {
+  if (report.length === 1) {
+    return report[0];
   }
-  return "0";
+  const [ones, zeroes] = partition(report, index);
+  if (ones >= zeroes) {
+    return filterByMostCommonOrOne(report.filter((entry) => entry[index] === "1"), index + 1);
+  }
+  return filterByMostCommonOrOne(report.filter((entry) => entry[index] === "0"), index + 1);
+}
+
+function filterByLeastCommonOrZero(report: string[], index: number = 0): string {
+  if (report.length === 1) {
+    return report[0];
+  }
+  const [ones, zeroes] = partition(report, index);
+  if (ones < zeroes) {
+    return filterByLeastCommonOrZero(report.filter((entry) => entry[index] === "1"), index + 1);
+  }
+  return filterByLeastCommonOrZero(report.filter((entry) => entry[index] === "0"), index + 1);
+}
+
+function partition(report: string[], index: number): [number, number] {
+  return report.reduce(([ones, zeros], entry) => entry[index] === "1" ? [ones + 1, zeros] : [ones, zeros + 1], [0, 0]);
 }
