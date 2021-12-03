@@ -6,7 +6,7 @@ Implementations for the 2021 [Advent of Code][1].
 
 Written for Node 16.
 
-_(It would probably work on earlier versions if you tweaked the `tsconfig.js` per [the docs][5].)_
+_(It would probably work on earlier versions if you tweaked the `tsconfig.json` per [the docs][5].)_
 
 ## Setup
 
