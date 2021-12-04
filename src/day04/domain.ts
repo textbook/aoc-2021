@@ -1,10 +1,10 @@
 export default function process(draw: number[], boards: BingoBoard[]): number {
   for (let value of draw) {
     boards.forEach((board) => board.mark(value));
-    const winner = boards.find((board) => board.hasWon());
-    if (winner) {
-      return value * [...winner.getUnmarked()].reduce((curr, next) => curr + next, 0);
+    if (boards.length === 1 && boards[0].hasWon()) {
+      return value * [...boards[0].getUnmarked()].reduce((curr, next) => curr + next, 0);
     }
+    boards = boards.filter((board) => !board.hasWon());
   }
   throw new Error("no board ever won");
 }

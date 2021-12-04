@@ -3,8 +3,8 @@ import { expect } from "chai";
 import giantSquid from ".";
 
 describe("Giant Squid", () => {
-  it("finds the score of the winning bingo board", () => {
-    expect(giantSquid(example)).to.equal(4512);
+  it("finds the score of the last winning bingo board", () => {
+    expect(giantSquid(example)).to.equal(1_924);
   });
 });
 
