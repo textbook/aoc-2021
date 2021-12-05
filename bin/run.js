@@ -11,11 +11,10 @@ if (!day) {
 }
 
 const directory = `day${day.padStart(2, "0")}`;
-const main = require(`${__dirname}/../lib/${directory}/`).default;
-const file = `${__dirname}/../src/${directory}/input.txt`;
+const { default: main } = require(`${__dirname}/../lib/${directory}/`);
 
 promises
- .readFile(file, "utf8")
+ .readFile(`${__dirname}/../src/${directory}/input.txt`, "utf8")
  .then((data) => main(data))
  .then((result) => {
    console.log(result);
