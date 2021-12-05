@@ -7,8 +7,8 @@ export interface Line {
 
 export default function process(lines: Line[]): number {
   const grid: { [key: string]: number } = {};
-  lines.forEach(({ from, to }) => {
-    points(from, to).forEach(([x, y]) => {
+  lines.forEach((line) => {
+    pointsOn(line).forEach(([x, y]) => {
       const key = `${x},${y}`;
       if (!(key in grid)) {
         grid[key] = 0;
@@ -19,9 +19,9 @@ export default function process(lines: Line[]): number {
   return Object.values(grid).filter((value) => value > 1).length;
 }
 
-function points(from: Coordinate, to: Coordinate): Coordinate[] {
+function pointsOn(line: Line): Coordinate[] {
   const coordinates: Coordinate[] = [];
-  const [[x1, y1], [x2, y2]] = normalise(from, to);
+  const { from: [x1, y1], to: [x2, y2] } = normalised(line);
   if (x1 === x2) {
     range(y1, y2).forEach((y) => coordinates.push([x1, y]));
   } else {
@@ -31,8 +31,9 @@ function points(from: Coordinate, to: Coordinate): Coordinate[] {
   return coordinates;
 }
 
-function normalise(from: Coordinate, to: Coordinate): Coordinate[] {
-  return [from, to].sort(([x1, y1], [x2, y2]) => x1 === x2 ? y1 - y2 : x1 - x2);
+function normalised({ from, to }: Line): Line {
+  [from, to] = [from, to].sort(([x1, y1], [x2, y2]) => x1 === x2 ? y1 - y2 : x1 - x2);
+  return { from, to };
 }
 
 function range(start: number, end: number): number[] {
