@@ -24,13 +24,14 @@ function points(from: Coordinate, to: Coordinate): Coordinate[] {
   const [x1, y1] = from;
   const [x2, y2] = to;
   if (x1 === x2) {
-    for (let y = Math.min(y1, y2); y <= Math.max(y1, y2); y++) {
-      coordinates.push([x1, y]);
-    }
+    range(y1, y2).forEach((y) => coordinates.push([x1, y]));
   } else if (y1 === y2) {
-    for (let x = Math.min(x1, x2); x <= Math.max(x1, x2); x++) {
-      coordinates.push([x, y1]);
-    }
+    range(x1, x2).forEach((x) => coordinates.push([x, y1]));
   }
   return coordinates;
+}
+
+function range(value1: number, value2: number): number[] {
+  const [start, end] = [value1, value2].sort((a, b) => a - b);
+  return [...Array(end - start + 1)].map((_, index) => index + start);
 }
