@@ -1,0 +1,13 @@
+{
+  "extension": [
+    "ts"
+  ],
+  "failZero": true,
+  "require": [
+    "ts-node/register",
+    "./setupTests.ts"
+  ],
+  "spec": [
+    "**/*.test.ts"
+  ]
+}

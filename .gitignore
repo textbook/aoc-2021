@@ -1,2 +1,5 @@
+.nyc_output/
+.stryker-tmp/
 lib/
 node_modules/
+reports/
