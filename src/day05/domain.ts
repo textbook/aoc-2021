@@ -31,7 +31,7 @@ function points(from: Coordinate, to: Coordinate): Coordinate[] {
     if (x2 > x1) {
       range(x1, x2).forEach((x, index) => coordinates.push([x, y1 + (index * (y2 > y1 ? 1 : -1))]));
     } else {
-      range(x1, x2).forEach((x, index) => coordinates.push([x, y1 + (index * (y2 > y1 ? -1 : 1))]));
+      range(x1, x2).forEach((x, index) => coordinates.push([x, y2 + (index * (y2 > y1 ? -1 : 1))]));
     }
   }
   return coordinates;
