@@ -27,6 +27,12 @@ function points(from: Coordinate, to: Coordinate): Coordinate[] {
     range(y1, y2).forEach((y) => coordinates.push([x1, y]));
   } else if (y1 === y2) {
     range(x1, x2).forEach((x) => coordinates.push([x, y1]));
+  } else {
+    if (x2 > x1) {
+      range(x1, x2).forEach((x, index) => coordinates.push([x, y1 + (index * (y2 > y1 ? 1 : -1))]));
+    } else {
+      range(x1, x2).forEach((x, index) => coordinates.push([x, y1 + (index * (y2 > y1 ? -1 : 1))]));
+    }
   }
   return coordinates;
 }

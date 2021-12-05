@@ -10,12 +10,12 @@ describe("Hydrothermal Venture domain", () => {
     ])).to.equal(1);
   });
 
-  it("ignores diagonals", () => {
+  it("handles diagonals", () => {
     expect(process([
       { from: [0, 0], to: [2, 2] },
       { from: [0, 2], to: [2, 0] },
       { from: [0, 0], to: [0, 2] },
-    ])).to.equal(0);
+    ])).to.equal(3);
   });
 
   it("handles reversed coordinates", () => {

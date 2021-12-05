@@ -4,7 +4,7 @@ import hydrothermalVenture from ".";
 
 describe("Hydrothermal Venture", () => {
   it("counts the points with overlapping lines", () => {
-    expect(hydrothermalVenture(example)).to.equal(5);
+    expect(hydrothermalVenture(example)).to.equal(12);
   });
 });
 
