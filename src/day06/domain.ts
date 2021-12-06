@@ -1,4 +1,4 @@
-export default function process(counters: number[], days: number = 80): number {
+export default function process(counters: number[], days: number): number {
   for (let _ = 0; _ < days; _++) {
     const maturing = counters.shift() as number;
     counters.push(maturing);
