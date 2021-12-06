@@ -1,5 +1,7 @@
-export default function parse(input: string): number[] {
-  const counters = [...Array(9)].fill(0);
+import { Population } from "./domain";
+
+export default function parse(input: string): Population {
+  const counters: Population = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   input.split(",").forEach((value) => {
     counters[parseInt(value, 10)] += 1;
   });
