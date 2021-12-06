@@ -7,7 +7,7 @@
     "build": "tsc",
     "preday": "npm run build",
     "day": "./bin/run.js",
-    "lint": "eslint ./src/ --ext=.ts",
+    "lint": "eslint . --ext=.js,.ts",
     "test": "mocha"
   },
   "keywords": [],
@@ -45,11 +45,14 @@
     ]
   },
   "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
     "extends": [
       "@codeyourfuture/standard",
       "plugin:@typescript-eslint/recommended"
     ],
+    "ignorePatterns": [
+      "lib/"
+    ],
+    "parser": "@typescript-eslint/parser",
     "rules": {
       "indent": ["error", 2, { "SwitchCase": 1 }]
     }

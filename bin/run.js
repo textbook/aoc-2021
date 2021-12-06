@@ -15,12 +15,12 @@ const directory = `day${day.padStart(2, "0")}`;
 const { default: main } = require(join(__dirname, "..", "lib", directory));
 
 readFile(join(__dirname, "..", "src", directory, "input.txt"), "utf8")
- .then((data) => main(data))
- .then((result) => {
-   console.log(result);
-   process.exit(0);
- })
- .catch((err) => {
-   console.error(err);
-   process.exit(1);
- });
+  .then((data) => main(data))
+  .then((result) => {
+    console.log(result);
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
