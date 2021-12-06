@@ -9,12 +9,12 @@ enum Method {
   LEAST_COMMON_OR_ZERO,
 }
 
-function findEntry(report: string[], method: Method, index: number = 0): string {
+function findEntry(report: string[], method: Method, index = 0): string {
   if (report.length === 1) {
     return report[0];
   }
   const [ones, zeroes] = countBits(report, index);
-  const relevantBit = (method === Method.MOST_COMMON_OR_ONE ? ones >= zeroes : ones < zeroes) ? "1" : "0"
+  const relevantBit = (method === Method.MOST_COMMON_OR_ONE ? ones >= zeroes : ones < zeroes) ? "1" : "0";
   return findEntry(report.filter((entry) => entry[index] === relevantBit), method, index + 1);
 }
 

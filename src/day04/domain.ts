@@ -1,5 +1,5 @@
 export default function process(draw: number[], boards: BingoBoard[]): number {
-  for (let value of draw) {
+  for (const value of draw) {
     boards.forEach((board) => board.mark(value));
     if (boards.length === 1 && boards[0].hasWon()) {
       return value * [...boards[0].getUnmarked()].reduce((curr, next) => curr + next, 0);
@@ -16,7 +16,7 @@ export class BingoBoard {
     this.unmarked = new Set(grid.flat());
   }
 
-  equals(other: any): boolean {
+  equals(other: unknown): boolean {
     return other instanceof BingoBoard
       && other.grid.length === this.grid.length
       && other.grid.every((row, x) => row.length === this.grid[x].length && row.every((value, y) => value === this.grid[x][y]));

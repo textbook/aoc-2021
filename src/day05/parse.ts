@@ -10,7 +10,7 @@ export default function parse(input: string): Coordinate[][] {
 }
 
 function createLine(first: Coordinate, second: Coordinate): Coordinate[] {
-  const [from, to] = [first, second].sort(([x1, y1], [x2, y2]) => x1 === x2 ? y1 - y2 : x1 - x2)
+  const [from, to] = [first, second].sort(([x1, y1], [x2, y2]) => x1 === x2 ? y1 - y2 : x1 - x2);
   const points: Coordinate[]  = [];
   const [x1, y1] = from;
   const [x2, y2] = to;
