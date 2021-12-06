@@ -1,8 +1,9 @@
 #! /usr/bin/env node
 
-const { promises } = require("fs");
+const { readFile } = require("fs").promises;
+const { join } = require("path");
 
-const [_, __, day] = process.argv;
+const [, , day] = process.argv;
 
 if (!day) {
   console.log("usage: ./bin/run.js <day number>");
@@ -11,10 +12,9 @@ if (!day) {
 }
 
 const directory = `day${day.padStart(2, "0")}`;
-const { default: main } = require(`${__dirname}/../lib/${directory}/`);
+const { default: main } = require(join(__dirname, "..", "lib", directory));
 
-promises
- .readFile(`${__dirname}/../src/${directory}/input.txt`, "utf8")
+readFile(join(__dirname, "..", "src", directory, "input.txt"), "utf8")
  .then((data) => main(data))
  .then((result) => {
    console.log(result);
