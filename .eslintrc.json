@@ -1,0 +1,39 @@
+{
+  "extends": [
+    "@codeyourfuture/standard"
+  ],
+  "ignorePatterns": [
+    "lib/"
+  ],
+  "overrides": [
+    {
+      "files": "*.ts",
+      "extends": [
+        "plugin:@typescript-eslint/recommended"
+      ]
+    },
+    {
+      "files": "*.test.ts",
+      "env": {
+        "mocha": true
+      },
+      "extends": [
+        "plugin:mocha/recommended",
+        "plugin:chai-expect/recommended"
+      ],
+      "rules": {
+        "mocha/no-mocha-arrows": "off"
+      }
+    },
+    {
+      "files": "bin/*.js",
+      "env": {
+        "node": true
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1 }]
+  }
+}
