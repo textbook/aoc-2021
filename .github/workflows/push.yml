@@ -16,6 +16,13 @@ jobs:
       - name: 🧼 Lint
         run: npm run lint
       - name: 🧪 Test
-        run: npm test
+        run: npm run test:cover
+      - name: 🦠 Mutate
+        run: npm run test:mutate
+      - name: 📝 Store reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: reports
       - name: 🏗 Build
         run: npm run build
