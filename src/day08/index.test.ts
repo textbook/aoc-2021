@@ -3,8 +3,8 @@ import { expect } from "chai";
 import sevenSegmentSearch from ".";
 
 describe("Seven Segment Search", () => {
-  it("counts the digits with unique numbers of segments", () => {
-    expect(sevenSegmentSearch(example)).to.equal(26);
+  it("calculates the sum of the output values", () => {
+    expect(sevenSegmentSearch(example)).to.equal(61_229);
   });
 });
 

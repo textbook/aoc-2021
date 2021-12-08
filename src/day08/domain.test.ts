@@ -3,10 +3,25 @@ import { expect } from "chai";
 import process from "./domain";
 
 describe("Seven Segment Search domain", () => {
-  it("counts outputs with 2, 3, 4 or 7 signal lines", () => {
+  it("decodes the output values based on the signal patterns", () => {
     expect(process([
-      { outputValues: ["hi", "foo", "hello", "world"], signalPatterns: [] },
-      { outputValues: ["banana", "bar", "spam", "coffee", "bananas"], signalPatterns: [] },
-    ])).to.equal(5);
+      {
+        outputValues: ["cdfeb", "fcadb", "cdfeb", "cdbaf"],
+        signalPatterns: ["acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"],
+      },
+    ])).to.equal(5_353);
+  });
+
+  it("sums multiple output values", () => {
+    expect(process([
+      {
+        outputValues: ["fdgacbe", "cefdb", "cefbgd", "gcbe"],
+        signalPatterns: ["be", "cfbegad", "cbdgef", "fgaecd", "cgeb", "fdcge", "agebfd", "fecdb", "fabcd", "edb"],
+      },
+      {
+        outputValues: ["fcgedb", "cgb", "dgebacf", "gc"],
+        signalPatterns: ["edbfga", "begcd", "cbg", "gc", "gcadebf", "fbgde", "acbgfd", "abcde", "gfcbed", "gfec"],
+      },
+    ])).to.equal(8_394 + 9_781);
   });
 });
