@@ -32,7 +32,7 @@ function decode({ outputValues, signalPatterns }: Entry): number {
     .reduce((curr, next) => curr + next, 0);
 }
 
-function digit(signal: Set<string>, digits: Set<string>[]) {
+function digit(signal: Set<string>, digits: Set<string>[]): number {
   for (let index = 0; index < 10; index++) {
     if (equal(signal, digits[index])) {
       return index;
@@ -53,6 +53,6 @@ function find<T>(within: T[], predicate: (value: T) => boolean): T {
   return value;
 }
 
-function intersection<T>(first: Set<T>, second: Set<T>){
+function intersection<T>(first: Set<T>, second: Set<T>): Set<T> {
   return new Set([...first].filter((value) => second.has(value)));
 }

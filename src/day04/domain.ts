@@ -30,7 +30,7 @@ export class BingoBoard {
     return this.anyRowWon() || this.anyColumnWon();
   }
 
-  mark(value: number) {
+  mark(value: number): void {
     this.unmarked.delete(value);
   }
 
