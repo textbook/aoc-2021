@@ -3,14 +3,15 @@ export type HeightMap = number[][];
 type Position = [number, number];
 
 export default function process(heightMap: HeightMap): number {
-  return heightMap
+  const lowPoints = heightMap
     .map((row, y) => row.map((_, x) => isLowPoint(heightMap, [x, y]) ? [x, y] : null))
     .flat()
-    .filter((position): position is Position => position !== null)
-    .map((lowPoint) => findBasin(heightMap, lowPoint))
+    .filter((position): position is Position => position !== null);
+  const basins = lowPoints.map((lowPoint) => findBasin(heightMap, lowPoint));
+  const largestThreeBasins = basins
     .sort((a, b) => b.length - a.length)
-    .slice(0, 3)
-    .reduce((curr, next) => curr * next.length, 1);
+    .slice(0, 3);
+  return largestThreeBasins.reduce((curr, next) => curr * next.length, 1);
 }
 
 function findBasin(heightMap: HeightMap, lowPoint: Position): Position[] {
