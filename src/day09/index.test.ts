@@ -3,8 +3,8 @@ import { expect } from "chai";
 import smokeBasin from ".";
 
 describe("Smoke Basin", () => {
-  it("calculates the sum of the risk levels of all low points on the heightmap", () => {
-    expect(smokeBasin(example)).to.equal(15);
+  it("calculates the product of the sizes of the three largest basins", () => {
+    expect(smokeBasin(example)).to.equal(1_134);
   });
 });
 
