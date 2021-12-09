@@ -15,7 +15,6 @@ export default function process(heightMap: HeightMap): number {
 
 function findBasin(heightMap: HeightMap, lowPoint: Position): Position[] {
   let basin = [lowPoint];
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const candidates: Position[] = basin
       .map((position) => neighbours(heightMap, position))
