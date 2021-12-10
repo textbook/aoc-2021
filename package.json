@@ -8,6 +8,7 @@
     "preday": "npm run build",
     "day": "./bin/run.js",
     "lint": "eslint . --ext=.js,.ts",
+    "new": "./bin/new.sh",
     "test": "mocha",
     "test:cover": "nyc mocha",
     "test:mutate": "stryker run"
