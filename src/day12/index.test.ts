@@ -4,15 +4,15 @@ import passagePathing from ".";
 
 describe("Passage Pathing", () => {
   it("counts the valid paths in the small example", () => {
-    expect(passagePathing(smallExample)).to.equal(10);
+    expect(passagePathing(smallExample)).to.equal(36);
   });
 
   it("counts the valid paths in the medium example", () => {
-    expect(passagePathing(mediumExample)).to.equal(19);
+    expect(passagePathing(mediumExample)).to.equal(103);
   });
 
   it("counts the valid paths in the large example", () => {
-    expect(passagePathing(largeExample)).to.equal(226);
+    expect(passagePathing(largeExample)).to.equal(3_509);
   });
 });
 
