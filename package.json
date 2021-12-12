@@ -9,6 +9,7 @@
     "day": "./bin/run.js",
     "lint": "eslint . --ext=.js,.ts",
     "new": "./bin/new.sh",
+    "ship": "npm run lint && npm test && git push",
     "test": "mocha",
     "test:cover": "nyc mocha",
     "test:mutate": "stryker run"
