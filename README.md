@@ -18,6 +18,8 @@ _(It would probably work on earlier versions if you tweaked the `tsconfig.json` 
 - `build`: compile [TypeScript][4] in `src/` to JavaScript in `lib/`
 - `day`: build all code then run the exercise for a specified day (e.g. `npm run day 1`)
 - `lint`: check the code style with [ESLint][6]
+- `new`: bootstrap a new day's code structure in `src/dayXX/` (e.g. `npm run new 2`)
+- `ship`: run linting and tests, then push to the remote if everything passed
 - `test`: run the [Mocha][2]/[Chai][3] tests
 
   [1]: https://adventofcode.com/
