@@ -8,8 +8,8 @@ export default function process(dots: Coordinate[], folds: Fold[], steps: number
     [dots, folded] = partition(dots, ([x, y]) => direction === "x" ? x < location : y < location);
     folded.forEach(([x, y]) => {
       const dot: Coordinate = direction === "x"
-        ? [location - Math.abs(location - x), y]
-        : [x, location - Math.abs(location - y)];
+        ? [(2 * location) - x, y]
+        : [x, (2 * location) - y];
       if (!dots.find((existing) => existing[0] === dot[0] && existing[1] === dot[1])) {
         dots.push(dot);
       }

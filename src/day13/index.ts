@@ -9,6 +9,7 @@ export default function transparentOrigami(input: string): number {
   return folded.length;
 }
 
+// Stryker disable all
 function prettyPrint(folded: Coordinate[]): void {
   const maxRow = Math.max(...folded.map(([, y]) => y));
   const maxColumn = Math.max(...folded.map(([x]) => x));
