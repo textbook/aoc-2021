@@ -1,7 +1,7 @@
 export type Coordinate = [number, number];
 export type Fold = { direction: "x" | "y", location: number };
 
-export default function process(dots: Coordinate[], folds: Fold[], steps: number): number {
+export default function process(dots: Coordinate[], folds: Fold[], steps: number): Coordinate[] {
   let folded: Coordinate[];
   for (let foldIndex = 0; foldIndex < steps; foldIndex++) {
     const { direction, location } = folds[foldIndex];
@@ -15,7 +15,7 @@ export default function process(dots: Coordinate[], folds: Fold[], steps: number
       }
     });
   }
-  return dots.length;
+  return dots;
 }
 
 function partition<T>(arr: T[], predicate: (value: T) => boolean): [T[], T[]] {

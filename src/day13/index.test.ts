@@ -3,8 +3,8 @@ import { expect } from "chai";
 import transparentOrigami from ".";
 
 describe("Transparent Origami", () => {
-  it("counts visible dots after the first fold", () => {
-    expect(transparentOrigami(example)).to.equal(17);
+  it("counts visible dots after all folds", () => {
+    expect(transparentOrigami(example)).to.equal(16);
   });
 });
 
