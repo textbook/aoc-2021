@@ -2,11 +2,11 @@ import { expect } from "chai";
 import process from "./domain";
 
 describe("Extended Polymerization domain", () => {
-  it("returns the same string if no steps are taken", () => {
-    expect(process("ABC", [], 0)).to.equal("ABC");
+  it("returns the initial counts if no steps are taken", () => {
+    expect(process("ABCAAB", [], 0)).to.equal(2);
   });
 
   it("inserts new items between pairs", () => {
-    expect(process("ABC", [{ from: ["A", "B"], to: "D" }], 1)).to.equal("ADBC");
+    expect(process("ABCAAB", [{ from: ["A", "B"], to: "C" }], 1)).to.equal(1);
   });
 });

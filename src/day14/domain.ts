@@ -1,6 +1,6 @@
 export type Rule = { from: [string, string], to: string };
 
-export default function process(template: string, rules: Rule[], steps: number): string {
+export default function process(template: string, rules: Rule[], steps: number): number {
   const characters = Array.from(template);
   for (let _ = 0; _ < steps; _++) {
     let index = 0;
@@ -13,5 +13,17 @@ export default function process(template: string, rules: Rule[], steps: number):
       index++;
     }
   }
-  return characters.join("");
+  const counts = Object.values(counter(characters)).sort((a, b) => a - b);
+  return counts[counts.length - 1] - counts[0];
+}
+
+function counter(value: string[]): { [key: string]: number } {
+  const counts: { [key: string]: number } = {};
+  for (const character of value) {
+    if (!(character in counts)) {
+      counts[character] = 0;
+    }
+    counts[character] += 1;
+  }
+  return counts;
 }
