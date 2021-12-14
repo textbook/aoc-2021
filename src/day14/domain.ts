@@ -1,13 +1,13 @@
-export type Rule = { from: [string, string], to: string };
+export type Rules = { [from: string]: string };
 
-export default function process(template: string, rules: Rule[], steps: number): number {
+export default function process(template: string, rules: Rules, steps: number): number {
   const characters = Array.from(template);
   for (let _ = 0; _ < steps; _++) {
     let index = 0;
     while (index < characters.length) {
-      const rule = rules.find(({ from }) => from[0] === characters[index] && from[1] === characters[index + 1]);
-      if (rule) {
-        characters.splice(index + 1, 0, rule.to);
+      const to = rules[`${characters[index]}${characters[index + 1]}`];
+      if (to) {
+        characters.splice(index + 1, 0, to);
         index++;
       }
       index++;
