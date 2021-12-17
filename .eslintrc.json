@@ -32,6 +32,7 @@
         "mocha/no-hooks-for-single-case": "error",
         "mocha/no-mocha-arrows": "off",
         "mocha/no-pending-tests": "error",
+        "mocha/no-setup-in-describe": "off",
         "mocha/no-skipped-tests": "error",
         "mocha/no-top-level-hooks": "error"
       }
