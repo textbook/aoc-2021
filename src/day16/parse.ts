@@ -3,7 +3,10 @@ import { Packet } from "./domain";
 type Bits = ("0" | "1")[];
 
 export default function parse(input: string): Packet {
-  return extractPacket(Array.from(input) as Bits);
+  return extractPacket(Array.from(input)
+    .flatMap((char) => Array.from(parseInt(char, 16)
+      .toString(2)
+      .padStart(4, "0"))) as Bits);
 }
 
 function extractPacket(bits: Bits): Packet {
