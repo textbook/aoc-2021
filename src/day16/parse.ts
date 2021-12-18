@@ -1,4 +1,4 @@
-import { Packet } from "./domain";
+import { Packet, PacketType } from "./domain";
 
 type Bits = ("0" | "1")[];
 
@@ -11,8 +11,8 @@ export default function parse(input: string): Packet {
 
 function extractPacket(bits: Bits): Packet {
   const version = getValue(bits.splice(0, 3));
-  const type = getValue(bits.splice(0, 3));
-  if (type === 4) {
+  const type: PacketType = getValue(bits.splice(0, 3));
+  if (type === PacketType.LITERAL_VALUE) {
     const value = extractLiteralValue(bits);
     return { type, value, version };
   } else if (bits.shift() === "0") {
