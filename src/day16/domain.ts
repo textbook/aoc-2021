@@ -13,23 +13,23 @@ interface BasePacket {
   type: PacketType;
   version: number;
 }
-type OperatorType = Exclude<PacketType, PacketType.LITERAL_VALUE>
-type Operator = BasePacket & { operands: Packet[]; type: OperatorType };
-type LiteralValue = BasePacket & { type: PacketType.LITERAL_VALUE; value: number };
-export type Packet = LiteralValue | Operator;
 
-export default function process(root: Packet): number {
-  if (root.type === PacketType.LITERAL_VALUE) {
-    return root.value;
-  }
-  return operations[root.type](root);
+export type Packet =
+  | BasePacket & { operands: Packet[]; type: Exclude<PacketType, PacketType.LITERAL_VALUE> }
+  | BasePacket & { type: PacketType.LITERAL_VALUE; value: number };
+
+export default function process<P extends Packet>(root: P): number {
+  return (operations[root.type] as Operation<P["type"]>)(root);
 }
 
-const operations: { [Type in OperatorType]: (packet: Operator) => number } = {
+type Operation<Type> = (packet: Packet & { type: Type }) => number;
+
+const operations: { [Type in PacketType]: Operation<Type> } = {
   [PacketType.SUM]: ({ operands }) => operands.reduce((curr, next) => curr + process(next), 0),
   [PacketType.PRODUCT]: ({ operands }) => operands.reduce((curr, next) => curr * process(next), 1),
   [PacketType.MINIMUM]: ({ operands }) => Math.min(...operands.map((op) => process(op))),
   [PacketType.MAXIMUM]: ({ operands }) => Math.max(...operands.map((op) => process(op))),
+  [PacketType.LITERAL_VALUE]: ({ value }) => value,
   [PacketType.GREATER_THAN]: ({ operands: [op1, op2] }) => process(op1) > process(op2) ? 1 : 0,
   [PacketType.LESS_THAN]: ({ operands: [op1, op2] }) => process(op1) < process(op2) ? 1 : 0,
   [PacketType.EQUAL_TO]: ({ operands: [op1, op2] }) => process(op1) === process(op2) ? 1 : 0,
